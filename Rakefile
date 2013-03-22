@@ -1,6 +1,5 @@
 require "fileutils"
 require "yaml"
-require "middleman-gh-pages"
 require "./lib/sync_services"
 
 #
@@ -22,6 +21,13 @@ namespace(:deploy) do
   desc "Deploy to staging server"
   task :staging => :build do
     SyncServices.sync(DEPLOY_SRC, REMOTES["staging"])
+  end
+
+  desc "Deploy to GitHub pages"
+  task :gh => :build do
+    require "bundler/setup"
+    require "middleman-gh-pages"
+    # ...
   end
 end
 
