@@ -1,0 +1,1 @@
+(function(){console.log("The main.js for the App 1 has been loaded.")}).call(this);
