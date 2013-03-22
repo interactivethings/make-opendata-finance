@@ -15,3 +15,9 @@
     line-height: 40px;
   }
 }
+.navbar-fixed-top .navbar-inner, 
+.navbar-static-top .navbar-inner{
+  @include box-shadow();
+  border: none;
+  background: #fff;
+}

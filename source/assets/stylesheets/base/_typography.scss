@@ -10,3 +10,9 @@ input,
 textarea {
   font-family: $default-font-family;
 }
+a{
+  color: $link-color;
+}
+a:hover{
+  color: $link-color-hover;
+}

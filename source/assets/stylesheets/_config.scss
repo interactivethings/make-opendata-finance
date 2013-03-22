@@ -1,10 +1,10 @@
 // COLORS
 /////////////////////////////////////////////////////////////////*/
-$background:        #F2F2F2;
+$background:          #F2F2F2;
 
-$border-color:      #DDDDDD;
-$border-color-dark: #999999;
-$border-color-light:#E9E9E9;
+$border-color:        #DDDDDD;
+$border-color-dark:   #999999;
+$border-color-light:  #E9E9E9;
 
 $text-color:          #333333;
 $text-color-dark:     #333333;
@@ -13,26 +13,35 @@ $text-color-light:    #999999;
 $text-color-bright:   #BBBBBB;
 $text-color-invers:   #FFFFFF;
 
-$link-color:        #2171b5;
-$link-color-hover:  #08519c;
-$link-color-active: #08306b;
+$link-color:           #3FBEFF;
+$link-color:           #EE0000;
+$link-color-hover:     #3FBEFF;
+$link-color-active:    #3FBEFF;
 
 // TYPOGRAPHY
 /////////////////////////////////////////////////////////////////*/
-$default-font-family:       "Helvetica" Arial;
-$default-font-size:       "Helvetica" Arial;
+$default-font-family: "Helvetica" Arial;
+$default-font-size:   12px;
 $default-line-height: 1.5;
 
-$font-size-x:       12px;
-$font-size-s:       14px;
-$font-size-m:       16px;
-$font-size-l:       24px;
-$font-size-h:       36px;
+$font-size-x:         12px;
+$font-size-s:         14px;
+$font-size-m:         16px;
+$font-size-l:         24px;
+$font-size-h:         36px;
 
 // SPACES
 /////////////////////////////////////////////////////////////////*/
-$space-x:            5px;
-$space-s:           10px;
-$space-m:           20px;
-$space-l:           40px;
-$space-h:           60px;
+$space-x:              5px;
+$space-s:             10px;
+$space-m:             20px;
+$space-l:             40px;
+$space-h:             60px;
+
+/* DEFAULTS
+/////////////////////////////////////////////////////////////////*/
+$default-border-radius:       3px;
+$default-box-shadow-h-offset: 0px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-blur:     5px;
+$default-box-shadow-color:    rgba(0,0,0,0.4);
