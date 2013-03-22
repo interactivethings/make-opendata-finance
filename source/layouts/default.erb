@@ -41,7 +41,7 @@
     <!-- ——————————————————————————————————————————————————————————————————— JS -->
     <!-- Base scripts -->
     <%= javascript_include_tag "base" %>
-    <%= javascript_include_tag "main" %>
+    <%= javascript_include_current "main" %>
     <!-- Page specific scripts -->
     <% data.page.scripts.each do |script| %>
     <%= javascript_include_tag script %>
