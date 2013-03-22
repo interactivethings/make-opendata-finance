@@ -10,10 +10,7 @@
 #= require d3/d3
 #
 #= require xdate/index
-#
-#= require ixt-js-lib/backbone/BackboneExtensions
-#= require ixt-js-lib/handlebars/TemplateHelpers
-#= require ixt-js-lib/xdate/locales
+#= require topojson/topojson
 
 ###
 # This is the import map for all shared files (our own and vendor libraries)
