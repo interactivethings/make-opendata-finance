@@ -1,27 +1,27 @@
-/**
- * BASE
- * The main file that will be available to the browser
- */
-
+// BASE
+// The main file that will be available to the browser
+/////////////////////////////////////////////////////////////////*/
 @import "config";
 
+// Compass
+@import "compass";
+@import "compass/css3";
+@import "compass/reset/utilities";
+@import "compass/utilities/general";
+@import "compass/layout/sticky-footer";
 
-/* Reset all styles
------------------------------------------------ */
-@include ixt-reset;
-
-/* Import app specific styles
------------------------------------------------ */
-@import "base/typography";
-
-// Layout
-@import "base/layout";
-
+// Vendors
 @import "bootstrap/docs/assets/css/bootstrap";
 
-// Components
-@import "components/navbar";
-@import "components/credits";
+// Library
+@import "lib/clearfix";
+@import "lib/spaces";
 
-/* Style Inbox (experiments, unfinished)
------------------------------------------------ */
+// Base
+@import "base/layout";
+@import "base/typography";
+
+// Components
+@import "components/credits";
+@import "components/navbar";
+@import "components/panel";

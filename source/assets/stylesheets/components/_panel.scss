@@ -1,0 +1,239 @@
+.panel {
+    position: absolute;
+    z-index: 102;
+    width: 300px;
+    right: 20px;
+    top: 20px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.6);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.panel h1{
+  font-size: 18px;
+  color: #e00;
+  line-height: 1;
+  margin: 10px 0 6px;
+}
+
+.panel h2{
+  font-size: 12px;
+  margin: 10px 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.panel p{
+  font-size: 14px;
+  margin: 0 0 1em;
+}
+.section{
+  border-bottom: 1px solid #ddd;
+  padding: 10px 10px 20px;
+}
+.folded .section{
+  border-bottom: none;
+}
+.section .ui{
+  background-color: #eee;
+  border: 1px solid #ddd;
+  padding: 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.last{
+  border-bottom: none;
+}
+/* ==========================================================================
+   SECTIONS
+   ==========================================================================
+*/
+/* TITLE */
+.title{
+  
+}
+.title img{
+  float: left;
+  margin: 10px 10px 6px 0;
+}
+.title p{
+  margin-bottom: 0;
+}
+.title a{
+  color: #222;
+  text-decoration: none;
+}
+.title a:hover{
+  text-decoration: underline;
+}
+.title .panel_toggle{
+  background: url(../img/icon_sprite.png) 0 -200px no-repeat;
+  width: 18px;
+  height: 18px;
+  text-indent: -9999px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.title .panel_toggle:hover{
+  background-position: -68px -200px;
+}
+.title .panel_toggle:active{
+  background-position: -136px -200px;
+}
+.folded .title .panel_toggle{
+  background: url(../img/icon_sprite.png) 0 -250px no-repeat;
+}
+.folded .title .panel_toggle:hover{
+  background-position: -68px -250px;
+}
+.folded .title .panel_toggle:active{
+  background-position: -136px -250px;
+}
+
+/* LOCATION */
+.location{
+  position: relative;
+}
+.location #location_btn{
+  position: absolute;
+  background: url(../img/icon_sprite.png) 0 0 no-repeat;
+  width: 18px;
+  height: 18px;
+  margin: 17px 0 0 7px;
+  text-indent: -9999px;
+}
+.location .location_btn:hover{
+  background-position: -68px 0;
+}
+.location .location_btn:active{
+  background-position: -136px 0;
+}
+.location .location_txt{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 1px solid #ccc;
+  padding: 7px 6px 6px 30px;
+  width: 242px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+/* TIME */
+.time{
+  position: relative;
+}
+.time .ui{
+  height: 18px;
+}
+.time h2 { 
+  padding-bottom:5px;
+}
+.hourLabel { 
+  float: right;
+  text-align: right;
+  width: 50%;
+  display:inline-block;
+}
+.time .time_play_btn{
+  background: url(../img/icon_sprite.png) 0 -50px no-repeat;
+  display: block;
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  text-indent: -9999px;
+}
+.time .time_play_btn:hover{
+  background-position: -68px -50px;
+}
+.time .time_play_btn:active{
+  background-position: -136px -50px;
+}
+.time .time_play_btn.running{
+  background-position: -136px -100px;
+}
+.time .time_play_btn.running:hover{
+  background-position: -68px -100px;
+}
+.time .time_play_btn.running:active{
+  background-position: -68px -100px;
+}
+.time .time_slider{
+  margin: 2px 0 0 26px;
+}
+/* FOCUS */
+.focus{
+}
+.focus ul{
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.focus ul li{
+  padding: 0 0 20px 2px;
+  list-style: none;
+  float: left;
+}
+.focus ul li:last-child{
+  padding-bottom: 0;
+}
+.focus ul li input {
+ margin: 0px 5px 0px 0px;
+}
+.focus ul li p.explain{
+  font-size: 12px;
+  color:#999; 
+  padding: 5px 10px 0 20px;
+  margin: 0;
+}
+.focus ul li.animation_toggle{
+  width: 100%;
+  clear: both;
+  float: none;
+}
+
+/* MAP TYPES */
+.mapTypes { 
+  padding-bottom: 10px;
+}
+.mapTypes h2 { 
+  float:left; 
+}
+.mapTypes label { 
+  font-size:12px;
+}
+.mapTypes ul {
+  line-height: 1;
+  padding: 0 0 0 25px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.mapTypes li {
+  list-style: none;
+  margin-right: 20px;
+  display: inline;
+}
+
+/* CREDITS */
+.credits{
+  padding-bottom: 10px;
+}
+.credits p {
+  color:#666;
+  font-size: 11px; 
+  margin: 10px 0;
+}
+
+/* TOOLTIP */
+.tipsy { 
+  font-size:10pt; 
+}

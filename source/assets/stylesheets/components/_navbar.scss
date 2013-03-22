@@ -1,0 +1,17 @@
+/* NAVBAR
+/////////////////////////////////////////////////////////////////*/
+.navbar {
+  .navbar-inner{
+    min-height:40px;
+  }
+  .brand {
+    padding: 10px 20px 10px 20px;
+    line-height: 20px;
+  }
+  .nav > li > a {
+    line-height: 20px
+  }
+  .navbar-text{
+    line-height: 40px;
+  }
+}
