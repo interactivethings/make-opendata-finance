@@ -12,6 +12,7 @@
 #= require xdate/index
 #
 #= require topojson/topojson
+#= require queue-async/queue
 
 ###
 # This is the import map for all shared files (our own and vendor libraries)
