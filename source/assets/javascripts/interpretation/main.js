@@ -1,0 +1,1 @@
+console.log "The main.js for the interpretation page has been loaded."
