@@ -15,5 +15,3 @@
 
 # Ignore Sass' cache
 /.sass-cache
-
-/Gemfile.lock
