@@ -1,1 +1,1 @@
-alert "Hello from assets/javascripts/app-1/main.js.coffee"
+console.log "The main.js for the App 1 has been loaded."
