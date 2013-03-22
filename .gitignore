@@ -15,3 +15,9 @@
 
 # Ignore Sass' cache
 /.sass-cache
+
+# Node.js Packages Folder
+/node_modules
+
+# OSX Files
+.DS_Store
