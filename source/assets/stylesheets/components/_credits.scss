@@ -1,0 +1,25 @@
+#credits{
+  background: #ddd image-url('credits-bg.png') 0 0;
+  @include box-shadow (inset 0px 1px 3px rgba(0,0,0,0.2));
+  p{
+    padding: 14px 0 11px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: #999;
+    @include text-shadow (0 1px 0 rgba(255, 255, 255, 0.6));
+    a{
+      color: #999;
+    }
+    .icon-love{
+      @include inline-block;
+      width: 16px;
+      height: 16px;
+      text-indent: -9999px;
+      position: relative;
+      margin: -2px 5px 0;
+      background: image-url('credits-heart.png') 0 0 no-repeat;
+    }
+  }
+}

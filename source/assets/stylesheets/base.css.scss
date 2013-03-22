@@ -1,0 +1,27 @@
+/**
+ * BASE
+ * The main file that will be available to the browser
+ */
+
+@import "config";
+
+
+/* Reset all styles
+----------------------------------------------- */
+@include ixt-reset;
+
+/* Import app specific styles
+----------------------------------------------- */
+@import "base/typography";
+
+// Layout
+@import "base/layout";
+
+@import "bootstrap/docs/assets/css/bootstrap";
+
+// Components
+@import "components/navbar";
+@import "components/credits";
+
+/* Style Inbox (experiments, unfinished)
+----------------------------------------------- */

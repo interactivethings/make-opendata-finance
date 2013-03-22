@@ -1,0 +1,15 @@
+{
+  "name": "ixt-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "d3": "~3.0",
+    "topojson": "~0.0",
+    "lodash": "~1.0",
+    "backbone": "~0.9",
+    "bootstrap": "~2.2",
+    "xdate": "http://arshaw.com/xdate/downloads/0.7/xdate.js",
+    "backbone.queryparams": "git://github.com/jhudson8/backbone-query-parameters.git",
+    "handlebars": "~1.0",
+    "ixt-js-lib": "ssh://git@bitbucket.org/interactivethings/ixt-js-lib.git"
+  }
+}

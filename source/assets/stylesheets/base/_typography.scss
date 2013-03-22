@@ -1,0 +1,139 @@
+// Base typography for whole site with sane defaults for commonly
+// used elements. These should be used sparingly however, we should
+// rely on the class names more often.
+body {
+  @extend .body-text;
+  color: $default-color;
+}
+
+h1 {@extend .section;    margin-bottom: 0.6em;}
+h2 {@extend .subsection; margin-bottom: 0.8em;}
+h3 {@extend .paragraph;  margin-bottom: 0.1em;}
+
+p  {@extend .body-text; margin-bottom: 1em;}
+a  {@extend .link;}
+
+strong {@extend .strong;}
+
+
+/**
+ * Default paragraph text
+ *
+ * Styleguide 2.0.0
+ */
+.body-text {
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  line-height: $default-line-height;
+
+  &.contrast {
+    color: $default-color-contrast;
+  }
+
+  &.tiny {
+    font-size: $small-font-size;
+    line-height: $small-line-height;
+  }
+}
+
+/**
+ * A section title
+ *
+ * Styleguide 2.1.1
+ */
+.section {
+  font-family: $default-font-family;
+  font-size: $large-font-size;
+  font-weight: bold;
+  line-height: $small-line-height;
+}
+
+/**
+ * A subsection title
+ *
+ * Styleguide 2.1.2
+ */
+.subsection {
+  font-family: $default-font-family;
+  font-size: $medium-font-size;
+  font-weight: bold;
+  line-height: $small-line-height;
+
+  &.contrast {
+    color: $dark;
+  }
+}
+
+/**
+ * A paragraph title
+ *
+ * Styleguide 2.1.3
+ */
+.paragraph {
+  color: $dark;
+  font-family: $default-font-family;
+  font-size: $default-font-size - 1px;
+  font-weight: bold;
+  line-height: $default-line-height;
+  text-transform: uppercase;
+
+  &.pale {
+    color: $shade;
+  }
+}
+
+
+/**
+ * A default link
+ *
+ * .passive - A link that doesn't stand out
+ # .active - A link that's currently selected
+ *
+ * Styleguide 2.2.0
+ */
+.link {
+  // border-bottom: 1px solid $link-color;
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    border-bottom-color: $link-color-active;
+    color: $link-color-active;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &.passive {
+   color: inherit;
+  }
+
+  &.active {
+    color: $dark;
+  }
+}
+
+/**
+ * A helper to prevent text-wrapping and keep everything on one line
+ *
+ * Styleguide 2.4.0
+ */
+.nowrap {
+  white-space: nowrap;
+}
+
+/**
+ * Normal weight font
+ *
+ * Styleguide 2.4.1
+ */
+.normal {
+  font-weight: normal;
+}
+
+/**
+ * Strong weight font
+ *
+ * Styleguide 2.4.2
+ */
+.strong {
+  font-weight: bold;
+}

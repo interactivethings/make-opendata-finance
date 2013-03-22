@@ -1,0 +1,68 @@
+// IMPORTS
+/////////////////////////////////////////////////////////////////*/
+@import "compass";
+
+$app-width:  643px;
+
+/* Colors
+----------------------------------------------- */
+
+$default-color          : #777777;
+$default-color-contrast : #666666;
+$default-color-pale     : #999999;
+$background             : #F2F2F2;
+
+$link-color             : #999999;
+$link-color-active      : #666666;
+
+$dark                   : #1E1E1E;
+$dark-shade             : #222222;
+$shade                  : #404040;
+$shade-bright           : #606060;
+$neutral                : #999999;
+$neutral-pale           : #a5a5a5;
+$pale                   : #CCCCCC;
+$pale-bright            : #D2D3D2;
+$bright                 : #E6E6E6;
+$light                  : #FFFFFF;
+
+/* Typography
+----------------------------------------------- */
+$default-font-family     : Arial, sans-serif;
+
+$small-font-size         : 10px;
+$default-font-size       : 12px;
+$medium-normal-font-size : 16px;
+$medium-font-size        : 20px;
+$large-font-size         : 30px;
+
+$small-line-height       : 1;
+$default-line-height     : 1.25;
+$large-line-height       : 1.5;
+
+
+/* Spaces
+----------------------------------------------- */
+$space-x  : 5px;
+$space-s  : 10px;
+$space-m  : 20px;
+$space-l  : 30px;
+$space-h  : 60px;
+
+$radius-s : 5px;
+$radius-l : 10px;
+
+
+/* Base Imports
+----------------------------------------------- */
+
+@import "rgbapng";
+@import "compass-css-arrow";
+@import "compass/layout/sticky-footer";
+
+// Library CSS styles
+@import "ixt-reset";
+@import "micro-clearfix";
+@import "position";
+@import "grid";
+@import "space";

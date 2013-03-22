@@ -1,0 +1,7 @@
+.app-content {
+  // Make space for navbar
+  padding-top: 40px;
+}
+
+// Make Footer Sticky
+@include sticky-footer(40px, ".app-container", ".app-footer-push", ".app-footer");

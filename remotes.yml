@@ -1,0 +1,11 @@
+staging:
+  service: rsync
+  user: interact
+  host: interactivethings.com
+  path: /home/interact/www/ixt-deploy-test
+  public_url: http://example.com
+
+production:
+  service: s3
+  bucket: ixt-deploy-test
+  public_url: http://example.com
