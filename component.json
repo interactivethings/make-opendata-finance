@@ -11,6 +11,7 @@
     "xdate": "http://arshaw.com/xdate/downloads/0.7/xdate.js",
     "backbone.queryparams": "git://github.com/jhudson8/backbone-query-parameters.git",
     "handlebars": "~1.0.0",
-    "swiss-maps": "git://github.com/interactivethings/swiss-maps.git"
+    "swiss-maps": "git://github.com/interactivethings/swiss-maps.git",
+    "jquery-ui": "~1.10.2"
   }
 }

@@ -1,6 +1,7 @@
 #= require_self
 #
 #= require jquery/jquery
+#= require jquery-ui/ui/jquery-ui.custom.js
 #
 #= require lodash/lodash
 #= require handlebars/handlebars

@@ -2,7 +2,7 @@
   @include box-shadow();
   @include border-radius();
   position: absolute;
-  z-index: 102;
+  z-index: 100;
   width: 300px;
   right: 20px;
   top: 80px;
@@ -101,7 +101,7 @@
   background: image-url("icon_sprite.png") 0 0 no-repeat;
   width: 18px;
   height: 18px;
-  margin: 17px 0 0 7px;
+  margin: 6px 0 0 7px;
   text-indent: -9999px;
 }
 .location .location_btn:hover{
@@ -110,14 +110,21 @@
 .location .location_btn:active{
   background-position: -136px 0;
 }
-.location .location_txt{
+.location input#location_txt{
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid $border-color;
   border-top: 1px solid #ccc;
-  padding: 7px 6px 6px 30px;
+  padding-left: 30px !important;
   width: 242px;
   @include border-radius();
 }
+.location input#location_txt:focus{
+  @include box-shadow(none);
+}
+.ui-autocomplete{
+  z-index: 200;
+}
+
 /* TIME */
 .time{
   position: relative;

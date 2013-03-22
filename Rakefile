@@ -1,8 +1,6 @@
 require "fileutils"
 require "yaml"
 require "./lib/sync_services"
-require "roo"
-require "csv"
 
 #
 # Config
@@ -108,6 +106,9 @@ end
 
 desc "Merge all Excel files into one CSV"
 task :process_raw do
+  require "bundler/setup"
+  require "roo"
+  require "csv"
 
   column_names = ["canton", "bfs_number", "municipality", "tax_freedom_day", "timespan", "gross_income", "social_group"]
   CSV.open("#{DATA_DIR}/clean/data.csv", "w") do |csv|
