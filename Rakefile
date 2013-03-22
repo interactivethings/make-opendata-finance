@@ -125,12 +125,12 @@ task :process_raw do
           3.upto(excel_file.last_row) do |line|
             csv << [
               excel_file.cell(line, 'A'), # canton
-              excel_file.cell(line, 'B'), # bfs_number
+              excel_file.cell(line, 'B').to_i, # bfs_number
               excel_file.cell(line, 'C'), # municipality
               excel_file.cell(line, 'D'), # tax_freedom_day
               excel_file.cell(line, 'E'), # timespan
-              key, # gross_income
-              file # social_group
+              key.gsub(/\'/, '').gsub(/\sFr\./, ''), # gross_income
+              file.gsub(/20130322_fichier/, '').gsub(/\.xls/, '') # social_group
             ]
           end
         }
