@@ -4,6 +4,7 @@
   "dependencies": {
     "d3": "~3.1.2",
     "topojson": "~0.0.37",
+    "queue-async": "~1.0.1",
     "lodash": "~1.0.1",
     "backbone": "~1.0.0",
     "bootstrap": "~2.3.1",
