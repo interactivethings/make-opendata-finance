@@ -111,7 +111,7 @@ task :process_raw do
   require "csv"
 
   column_names = ["canton", "bfs_number", "municipality", "tax_freedom_day", "timespan", "gross_income", "social_group"]
-  CSV.open("#{DATA_DIR}/clean/data.csv", "w") do |csv|
+  CSV.open("#{DATA_DIR}/clean/data.csv", "w:UTF-8") do |csv|
     csv << column_names
 
     # navigate into the data directory
@@ -121,17 +121,21 @@ task :process_raw do
       if file.include?('.xls')
         excel_file = Roo::Excel.new("#{DATA_DIR}/raw/#{file}")
 
-        excel_file.sheets.each_with_index { |(key, sheet), index|
+        excel_file.sheets.each_with_index { |key, index|
+
+          # set current default sheet to work on
+          excel_file.default_sheet = key
+
           puts "working on sheet #{index} from file #{file}"
           3.upto(excel_file.last_row) do |line|
             csv << [
               excel_file.cell(line, 'A'), # canton
-              excel_file.cell(line, 'B'), # bfs_number
+              excel_file.cell(line, 'B').to_i, # bfs_number
               excel_file.cell(line, 'C'), # municipality
               excel_file.cell(line, 'D'), # tax_freedom_day
-              excel_file.cell(line, 'E'), # timespan
-              key, # gross_income
-              file # social_group
+              excel_file.cell(line, 'E').to_i, # timespan
+              key.gsub(/\'/, '').gsub(/\sFr\./, ''), # gross_income
+              file.gsub(/20130322_fichier/, '').gsub(/\.xls/, '') # social_group
             ]
           end
         }
