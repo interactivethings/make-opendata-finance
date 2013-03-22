@@ -1,5 +1,6 @@
 require "fileutils"
 require "yaml"
+require "middleman-gh-pages"
 require "./lib/sync_services"
 
 #
