@@ -22,20 +22,40 @@
     .await(ready);
 
   function ready (error, fichier, municipalities) {
-    var daysByBfsNo = {};
+
+    var daysByBfsNo = {},
+      min = 365,
+      max = 0,
+      diff = 0;
+
     fichier.forEach(function(d) {
       if (d['gross_income'] == '60000' && d['social_group'] == '1') {
-        daysByBfsNo[d['bfs_number']] = d['timespan'];
+        var days = d['timespan'];
+        daysByBfsNo[d['bfs_number']] = days;
+        if (days > max) {
+          max = days;
+        }
+        if (days < min) {
+          min = days;
+        }
       }
     });
+    diff = max - min;
+
     svg.selectAll('path')
-    .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
-    .enter().append('path')
-    .attr('class', 'municipality')
-    .style('fill', function(d) {
-      return 'rgba(49,163,84,' + (daysByBfsNo[d.properties.bfsNo] / 60) + ')';
-    })
-    .attr('d', path);
+      .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
+      .enter().append('path')
+      .attr('class', function (d) {
+        return 'municipality municipality-' + d.properties.bfsNo;
+      })
+      .style('fill', function (d) {
+        var bfsNo = d.properties.bfsNo;
+        if (bfsNo in daysByBfsNo) {
+          return 'rgba(49,163,84,' + ((daysByBfsNo[bfsNo] - min) / diff) + ')';
+        }
+        return 'rgb(214,234,247)';
+      })
+      .attr('d', path);
   }
 
   /* LOCATION BY TEXT
