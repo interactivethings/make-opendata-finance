@@ -32,4 +32,39 @@
         @TFD = @CHF * @caloriesPerCookie
       )
   setUpTangle()
+
+  setUpEditable = ->
+    $.fn.editable.defaults.mode = "inline"
+    $('#social-group').editable(
+      showbuttons: false,
+      type: "select2",
+      value: 2,
+      source: [
+        {id: '1', text: 'Married without children'},
+        {id: '2', text: 'Married with two children'},
+        {id: '3', text: 'Single, fuck yeah!'}
+      ]
+    )
+    $('#income-group').editable(
+      showbuttons: false,
+      type: "select2",
+      value: 1,
+      source: [
+        {id: '1', text: '10000 – 20000'},
+        {id: '2', text: '20000 – 40000'},
+        {id: '3', text: '40000 – 80000'}
+      ]
+    )
+    $('#municipality').editable(
+      showbuttons: false,
+      type: "select2",
+      value: 1,
+      source: [
+        {id: '1', text: 'Egliswil'},
+        {id: '2', text: 'Lenzburg'},
+        {id: '3', text: 'Aarau'}
+      ]
+    )
+  setUpEditable()
+
 )()

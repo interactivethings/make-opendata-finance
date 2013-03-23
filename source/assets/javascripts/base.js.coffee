@@ -12,6 +12,10 @@
 #
 #= require xdate/index
 #
+#= require select2/select2
+#= require bootstrap/docs/assets/js/bootstrap
+#= require bootstrap-editable/bootstrap-editable/js/bootstrap-editable
+#
 #= require topojson/topojson
 #= require queue-async/queue
 

@@ -11,7 +11,9 @@
 @import "compass/layout/sticky-footer";
 
 // Vendors
+@import "select2/select2";
 @import "bootstrap/docs/assets/css/bootstrap";
+@import "bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css";
 @import "tangle/TangleKit/TangleKit";
 
 // Library
@@ -27,3 +29,6 @@
 @import "components/navbar";
 @import "components/panel";
 @import "components/tangle";
+
+// Overrides
+@import "overrides/bootstrap";
