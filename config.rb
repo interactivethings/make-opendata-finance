@@ -23,6 +23,7 @@ page "*", :layout => "layouts/default"
 #
 # With no layout
 # page "index.html", :layout => false
+page "final.html", :layout => "layouts/final"
 
 # With alternative layout
 # page "/path/to/file.html", :layout => :otherlayout
