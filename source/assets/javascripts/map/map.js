@@ -8,36 +8,42 @@ app.map = function () {
     grossIncome = '60000',
     socialGroup = '1',
     nestedData,
-    geometries;
+    geometries,
+    projection,
+    path,
+    svg,
+    scale,
+    map;
 
-  var projection = d3.geo.albers()
+  projection = d3.geo.albers()
     .rotate([0, 0])
     .center([8.43, 46.8])
     .scale(13600);
-  
-  var path = d3.geo.path()
+
+  path = d3.geo.path()
     .projection(projection);
-  
-  var svg = d3.select("#map").append("svg")
+
+  svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
-  
-  function getTimespan(d) {
-    return d['timespan'];
-  }
 
-  var map = function () {
+  scale = d3.scale.linear()
+    .range([0, 1]);
 
+  map = function () {
+    return map;
   };
-  
+
   map.load = function () {
-    queue()
-      .defer(d3.csv, 'assets/data/fichier.csv')
-      .defer(d3.json, 'assets/geodata/topojson/swiss-municipalities-simplified.json')
-      .await(this.ready);
+    
+    d3.json('assets/geodata/topojson/swiss-municipalities-simplified.json', map.draw);
+
+    d3.csv('assets/data/fichier.csv', map.ready);
   };
 
-  map.ready = function (error, fichier, municipalities) {
+  map.ready = function (error, fichier) {
+
+    var keys, domain, demographics;
 
     nestedData = d3.nest()
       .key(function(d) {
@@ -54,19 +60,45 @@ app.map = function () {
       })
       .map(fichier);
 
-    geometries = topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries;
+    keys = d3.keys(nestedData);
 
-    map.render();
+    domain = d3.extent(fichier, function (d) {
+      return parseInt(d['timespan'], 10);
+    });
+    scale.domain(domain);
+
+    function renderIncomeValue(i) {
+      var value = keys[i];
+      $('#income_value').text('CHF ' + value);
+      grossIncome = value;
+      map.render();
+    }
+    
+    $('#income_slider')
+      .slider({
+        orientation: 'horizontal',
+        max: keys.length - 1,
+        value: 4,
+        step: 1,
+        slide: function(e, ui) { renderIncomeValue(ui.value); }
+      });
+    renderIncomeValue($('#income_slider').slider('value'));
+
+    demographics = d3.nest()
+      .key(function(d) {
+        return d.social_group;
+      })
+      .map(fichier)
+      .keys();
+      
+    demographics.forEach(function (k, v) {
+      $('#demographics_slider').append('<input type="radio" /> <label>Foo</label>');
+    });
   };
 
-  map.render = function () {
-      
-    var data = d3.map(nestedData[grossIncome][socialGroup]),
-      values = data.values();
+  map.draw = function (municipalities) {
 
-    var min = d3.min(values, getTimespan);
-    var max = d3.max(values, getTimespan);
-    var diff = max - min;
+    geometries = topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries;
 
     svg.selectAll('path')
       .data(geometries)
@@ -76,25 +108,35 @@ app.map = function () {
         return d.properties.bfsNo;
       })
       .style('fill', function (d) {
-        var bfsNo = d.properties.bfsNo,
-          alpha;
-        if (data.has(bfsNo)) {
-          alpha = (data.get(bfsNo).timespan - min) / diff;
-          return 'rgba(49,163,84,' + (1 - alpha) + ')';
-        }
-        return 'rgb(214,234,247)';
+        return 'rgb(255, 255, 255)';
       })
       .attr('d', path)
       .append('title').text(function (d) {
-        var bfsNo = d.properties.bfsNo,
-          title = d.properties.name,
-          taxFreedomDay;
-        if (data.has(bfsNo)) {
-          taxFreedomDay = data.get(bfsNo).tax_freedom_day;
-          title += ', ' + taxFreedomDay.substring(8, 10) + '.' + taxFreedomDay.substring(5, 7) + '.' + taxFreedomDay.substring(0, 4);
-        }
-        return title;
+        return d.properties.name;
       });
+
+  };
+
+  map.render = function () {
+
+    var data, domain;
+
+    data = d3.map(nestedData[grossIncome][socialGroup]);
+
+    domain = d3.extent(data.values(), function (d) {
+      return parseInt(d['timespan'], 10);
+    });
+    scale.domain(domain);
+
+    d3.selectAll('path').style('fill', function (d) {
+      var bfsNo, alpha;
+      bfsNo = d.properties.bfsNo
+      if (data.has(bfsNo)) {
+        alpha = scale(parseInt(data.get(bfsNo).timespan, 10));
+        return 'rgba(49,163,84,' + alpha + ')';
+      }
+      return 'rgb(214,234,247)';
+    });
   };
 
   return map;

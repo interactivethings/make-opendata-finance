@@ -7,3 +7,28 @@ path {
 .municipality {
   stroke: #06840B;
 }
+
+.section.demographics ul{
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.section.demographics ul li{
+  padding: 0 0 5px 2px;
+  list-style: none;
+}
+.section.demographics ul li:last-child{
+  padding-bottom: 0;
+}
+.section.demographics ul li input {
+ margin: 0px 5px 0px 0px;
+}
+.section.demographics ul li label {
+ display: inline;
+}
+.section.demographics ul li#animation_toggle{
+  width: 100%;
+  clear: both;
+  float: none;
+}

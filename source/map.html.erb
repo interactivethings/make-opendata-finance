@@ -10,22 +10,19 @@ scripts: []
     <p>Description of our project regarding the tax freedom day.</p>
     <a href="#" title="Toggle Panel" id="panel_toggle">hide</a>
   </div>
-  <div class="section location">
-    <h2>Location</h2>
-    <a href="#" title="Find nearest location" id="location_btn">Locate</a>
-    <input type="text" id="location_txt" placeholder="Enter your location" / >
-  </div>
-  <div class="section income">
-    <h2>Geography</h2>
-    <p>Filters for geography</p>
-  </div>
-  <div class="section income">
+  <div class="section demographics">
     <h2>Demographics</h2>
-    <p>Filters for demographics</p>
+    <ul>
+      <li><input name="demographics" type="radio" value="1" id="demographics-1" checked="checked" /> <label for="demographics-1">Ledige Person (ohne Kinder)</label></li>
+      <li><input name="demographics" type="radio" value="2" id="demographics-2" /> <label for="demographics-2">Ehepaar ohne Kinder</label></li>
+      <li><input name="demographics" type="radio" value="3" id="demographics-3" /> <label for="demographics-3">Ehepaar mit 2 Kindern</label></li>
+      <li><input name="demographics" type="radio" value="4" id="demographics-4" /> <label for="demographics-4">Rentnerehepaar (ohne Kinder)</label></li>
+    </ul>
   </div>
   <div class="section income">
     <h2>Income</h2>
-    <p>Filters for income</p>
+    <p>Filters for income: <span id="income_value"></span></p>
+    <div id="income_slider"></div>
   </div>
   <div class="section credits last">
     <p>Map data &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a></p>
