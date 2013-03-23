@@ -23,8 +23,10 @@
 
   function ready (error, fichier, municipalities) {
     var daysByBfsNo = {};
-    fichier.forEach(function(d) { 
-      daysByBfsNo[d['BFS/OFS-No']] = d['Dauer (Tage)/Durée (jours)'];
+    fichier.forEach(function(d) {
+      if (d['gross_income'] == '60000' && d['social_group'] == '1') {
+        daysByBfsNo[d['bfs_number']] = d['timespan'];
+      }
     });
     svg.selectAll('path')
     .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
