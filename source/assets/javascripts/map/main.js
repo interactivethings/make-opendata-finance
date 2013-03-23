@@ -23,7 +23,7 @@
 
   function ready (error, fichier, municipalities) {
 
-    var daysByBfsNo = {},
+    var indexByBfsNo = {},
       min = 365,
       max = 0,
       diff = 0;
@@ -31,7 +31,7 @@
     fichier.forEach(function(d) {
       if (d['gross_income'] == '60000' && d['social_group'] == '1') {
         var days = d['timespan'];
-        daysByBfsNo[d['bfs_number']] = days;
+        indexByBfsNo[d['bfs_number']] = d;
         if (days > max) {
           max = days;
         }
@@ -52,13 +52,24 @@
       .style('fill', function (d) {
         var bfsNo = d.properties.bfsNo,
           alpha;
-        if (bfsNo in daysByBfsNo) {
-          alpha = (daysByBfsNo[bfsNo] - min) / diff;
+        if (bfsNo in indexByBfsNo) {
+          alpha = (indexByBfsNo[bfsNo]['timespan'] - min) / diff;
           return 'rgba(49,163,84,' + (1 - alpha) + ')';
         }
         return 'rgb(214,234,247)';
       })
-      .attr('d', path);
+      .attr('d', path)
+      .append('title').text(function (d) {
+        var bfsNo = d.properties.bfsNo,
+          title = d.properties.name,
+          taxFreedomDay;
+        if (bfsNo in indexByBfsNo) {
+          taxFreedomDay = indexByBfsNo[bfsNo]['tax_freedom_day'];
+          2012-01-01
+          title += ', ' + taxFreedomDay.substring(8, 10) + '.' + taxFreedomDay.substring(5, 7) + '.' + taxFreedomDay.substring(0, 4);
+        }
+        return title;
+      });
   }
 
   /* LOCATION BY TEXT
