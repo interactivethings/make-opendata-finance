@@ -1,3 +1,9 @@
+#= require tangle/Tangle.js
+#= require tangle/TangleKit/mootools.js
+#= require tangle/TangleKit/sprintf.js
+#= require tangle/TangleKit/BVTouchable.js
+#= require tangle/TangleKit/TangleKit.js
+
 (->
   $("a#panel_toggle").click ->
     panel = $(".panel")
@@ -15,4 +21,15 @@
           $(".title").addClass "last"
           panel.toggleClass("folded")
           panel.toggleClass("unfolded")
+
+  setUpTangle = ->
+    element = document.getElementById("tangle")
+    tangle = new Tangle(element,
+      initialize: ->
+        @CHF = 4
+        @caloriesPerCookie = 50
+      update: ->
+        @TFD = @CHF * @caloriesPerCookie
+      )
+  setUpTangle()
 )()

@@ -12,6 +12,7 @@
 
 // Vendors
 @import "bootstrap/docs/assets/css/bootstrap";
+@import "tangle/TangleKit/TangleKit";
 
 // Library
 @import "lib/clearfix";
@@ -25,5 +26,4 @@
 @import "components/credits";
 @import "components/navbar";
 @import "components/panel";
-
-@import "overrides/bootstrap";
+@import "components/tangle";
