@@ -20,6 +20,6 @@
 ###
 
 # Define application namespace and base config
-window.App =
+window.app =
   config:
     googleAnalyticsAccount: null

@@ -70,7 +70,7 @@ configure :development do
   activate :livereload
 
   # Debugging assets has a big speed impact, so only enable it when needed
-  # set :debug_assets, true
+  set :debug_assets, true
 end
 
 # Build-specific configuration
