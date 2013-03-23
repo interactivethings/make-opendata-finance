@@ -49,9 +49,11 @@
         return 'municipality municipality-' + d.properties.bfsNo;
       })
       .style('fill', function (d) {
-        var bfsNo = d.properties.bfsNo;
+        var bfsNo = d.properties.bfsNo,
+          alpha;
         if (bfsNo in daysByBfsNo) {
-          return 'rgba(49,163,84,' + ((daysByBfsNo[bfsNo] - min) / diff) + ')';
+          alpha = (daysByBfsNo[bfsNo] - min) / diff;
+          return 'rgba(49,163,84,' + (1 - alpha) + ')';
         }
         return 'rgb(214,234,247)';
       })
