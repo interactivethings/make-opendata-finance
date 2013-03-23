@@ -1,0 +1,52 @@
+// PAGE
+/////////////////////////////////////////////////////////////////*/
+.editable{
+  text-decoration: underline;
+}
+section.timeline-question{
+  padding: 100px 0;
+  border-bottom: 1px solid #eee;
+  p.lead{
+    margin-bottom: 0;
+  }
+}
+section.timeline-chart{
+  #chart{
+  }
+}
+// CHART
+/////////////////////////////////////////////////////////////////*/
+line, rect{
+  shape-rendering: crispEdges;
+}
+.axis{
+  path,
+  line{
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+  }
+}
+.brush .extent {
+  stroke: none;
+  fill-opacity: .1;
+  shape-rendering: crispEdges;
+}
+.brush .background {
+  visibility: visible !important;
+  stroke: none;
+  fill-opacity: .05;
+  shape-rendering: crispEdges;
+}
+.brush .resize path {
+  fill: #f5f5f5;
+  stroke: #ccc;
+}
+.day{
+  stroke: #fff;
+  stroke-width: 0.5;
+}
+.day-context{
+  stroke: #fff;
+  stroke-width: 0.5;
+}

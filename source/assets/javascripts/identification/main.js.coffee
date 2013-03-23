@@ -1,1 +1,0 @@
-console.log "The main.js for the identification page has been loaded."
