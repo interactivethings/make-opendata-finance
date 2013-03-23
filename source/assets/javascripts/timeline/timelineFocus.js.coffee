@@ -1,6 +1,7 @@
 # Some helpers
 parseDate = d3.time.format("%Y-%m-%d").parse
 t = (x, y) -> "translate(#{x},#{y})"
+A = 137.508 / 180 * Math.PI
 
 app.timelineFocus = ->
   root = null
@@ -8,6 +9,7 @@ app.timelineFocus = ->
   height = 200
   domain = []
   x = d3.time.scale()
+  r = d3.scale.sqrt()
 
   focus = (g) ->
     root = g.each (days) ->
@@ -21,18 +23,22 @@ app.timelineFocus = ->
         .domain([0, maxPerDay])
         .range(["#fff", "#f00"])
 
-      markers = g.selectAll("rect")
+      r.domain([0, maxPerDay]).range([0, Math.min(height / 2, markerWidth / 2)])
+
+      # Detail groups
+      groups = g.selectAll(".group")
         .data(days, (d) -> d.key)
 
-      markers.enter().append("rect")
+      groups.enter().append("g")
         .attr
-          transform: (d) -> t(x(parseDate(d.key)), 0)
-          height: height
-          width: markerWidth
-        .style
-          fill: (d) -> fill(d.values.length)
+          class: "group"
+          transform: (d) -> t(x(d3.time.hour.offset(parseDate(d.key), 12)), height/2)
+      .append("circle")
+        .attr
+          class: "marker-sum"
+          r: (d) -> r(d.values.length)
 
-      markers.exit().remove()
+      groups.exit().remove()
 
     focus
 
@@ -54,10 +60,58 @@ app.timelineFocus = ->
     domain = value
     x.domain(domain)
     markerWidth = x(d3.time.day.offset(domain[0], 1)) - x.range()[0]
-    root?.selectAll("rect")
+    r.range([0, Math.min(height / 2, markerWidth / 2)])
+    if root?
+      root.selectAll(".group")
+        .attr
+          transform: (d) -> t(x(parseDate(d.key)) + markerWidth / 2, height / 2)
+      .select(".marker-sum")
+        .attr
+          r: (d) -> r(d.values.length)
+    focus
+
+  # Event handlers
+
+  focus.brushstart = ->
+    group = d3.selectAll(".group.active")
+      .classed("active", false)
+    group.select(".marker-sum").transition().duration(100)
+      .attr("r", (d) -> r(d.values.length))
+    group.selectAll(".detail")
+      .remove()
+    focus
+
+  focus.brushend = ->
+    group = d3.selectAll(".group").filter (d) ->
+      day = d3.time.day(parseDate(d.key))
+      d3.time.hour.offset(domain[0], 12).getTime() is day.getTime()
+
+    group
+      .classed("active", true)
+
+    group.select(".marker-sum").transition().duration(100)
+      .attr("r", 0)
+
+    details = group.selectAll(".detail")
+      .data((d) -> d.values)
+
+    details.enter().append("circle")
       .attr
-        transform: (d) -> t(x(parseDate(d.key)), 0)
-        width: markerWidth
+        class: "detail"
+        transform: (d, i) -> 
+          n = i + 1
+          angle = n * A
+          radius = 8 * Math.sqrt(n)
+          t(Math.cos(angle) * radius, Math.sin(angle) * radius)
+        r: 5
+      .style
+        opacity: 0
+
+    details.transition().duration(10).delay((d, i) -> 100 + i * 1)
+      .style
+        opacity: 1
+
+
     focus
 
   focus

@@ -18,17 +18,20 @@ app.timelineContext = ->
       else 
         extent = brush.extent()
         start = d3.time.hour.offset(d3.time.day.floor(extent[0]), -12)
+        start = x.domain()[0] if start < x.domain()[0]
         end = d3.time.day.offset(start, 2)
+        if end > x.domain()[1]
+          end = x.domain()[1]
+          start = d3.time.day.offset(end, -2)
         brush.extent([start, end])
         dispatch.brush(brush.extent())
+      return
 
   context = (g) ->
     g.each (days) ->
         
       x.domain(domain).range([0, width])
       markerWidth = x(d3.time.day.offset(domain[0], 1)) - x.range()[0]
-
-      maxPerDay = d3.max(days, (d) -> d.values.length)
 
       fill = d3.scale.linear()
         .domain([0, maxPerDay])

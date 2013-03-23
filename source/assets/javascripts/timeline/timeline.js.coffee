@@ -15,17 +15,23 @@ app.timeline = ->
     .width(width)
     .height(30)
     .on("brush", focus.domain)
+    .on("brushstart", focus.brushstart)
+    .on("brushend", focus.brushend)
 
   timeline = (selection) ->
     selection.each (data) ->
       # Mangle data, construct scales
       data.forEach (d) -> d.timespan = +d.timespan
+      timeExtent = d3.extent(data, (d) -> parseDate(d.tax_freedom_day))
+
+      # TODO: implement real filter
+      data = data.filter (d) -> d.gross_income is "100000" and d.social_group is "1" 
 
       days = d3.nest()
         .key((d) -> d.tax_freedom_day)
         .entries(data)
 
-      timeExtent = d3.extent(days, (d) -> parseDate(d.key))
+      # timeExtent = d3.extent(days, (d) -> parseDate(d.key))
       # start = new Date(2011, 1, 1)
       # end = d3.time.year.offset(start, 1)
       # timeExtent = [start, end]
@@ -46,15 +52,16 @@ app.timeline = ->
           class: "timeline-context"
           transform: t(0, height - context.height())
 
-      focus.domain(timeExtent)
-      vis.select(".timeline-focus")
-        .datum(days)
-        .call(focus)
-
       context.domain(timeExtent)
       vis.select(".timeline-context")
         .datum(days)
         .call(context)
+
+      focus.domain(context.domain())
+      vis.select(".timeline-focus")
+        .datum(days)
+        .call(focus)
+
 
     timeline
 
