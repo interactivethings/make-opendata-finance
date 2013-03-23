@@ -4,7 +4,7 @@ var app = app || {};
 app.map = function () {
 
   var width = 960,
-    height = 500,
+    height = 600,
     grossIncome = '60000',
     socialGroup = '1',
     nestedData,
@@ -17,7 +17,7 @@ app.map = function () {
 
   projection = d3.geo.albers()
     .rotate([0, 0])
-    .center([8.43, 46.8])
+    .center([7.3, 47])
     .scale(13600);
 
   path = d3.geo.path()
@@ -25,7 +25,11 @@ app.map = function () {
 
   svg = d3.select("#map").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .call(d3.behavior.zoom().on('zoom', function () {
+      svg.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
+    }))
+    .append('g');
 
   scale = d3.scale.linear()
     .range([0, 1]);
@@ -88,6 +92,8 @@ app.map = function () {
       socialGroup = $(this).val();
       map.render();
     });
+
+    $('#loading').hide();
   };
 
   map.draw = function (municipalities) {

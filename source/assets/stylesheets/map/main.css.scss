@@ -1,3 +1,7 @@
+svg {
+  width: 100%;
+}
+
 path {
   fill: none;
   stroke: #888;
@@ -31,4 +35,18 @@ path {
   width: 100%;
   clear: both;
   float: none;
+}
+
+#loading {
+  background-color: rgba(255,255,255,0.7);
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 300px;
+  font-size: 3em;
+  color: #777;
 }
