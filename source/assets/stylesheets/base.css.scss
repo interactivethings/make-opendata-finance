@@ -14,7 +14,6 @@
 @import "select2/select2";
 @import "bootstrap/docs/assets/css/bootstrap";
 @import "bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css";
-@import "tangle/TangleKit/TangleKit";
 
 // Library
 @import "lib/clearfix";
@@ -28,7 +27,7 @@
 @import "components/credits";
 @import "components/navbar";
 @import "components/panel";
-@import "components/tangle";
+@import "components/introduction";
 
 // Overrides
 @import "overrides/bootstrap";

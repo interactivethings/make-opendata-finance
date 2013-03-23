@@ -14,7 +14,6 @@
     "swiss-maps": "git://github.com/interactivethings/swiss-maps.git",
     "jquery-ui": "~1.10.2",
     "x-editable": "git://github.com/vitalets/x-editable.git",
-    "select2": "git://github.com/ivaynberg/select2.git",
-    "tangle": "git://github.com/worrydream/Tangle.git"
+    "select2": "git://github.com/ivaynberg/select2.git"
   }
 }
