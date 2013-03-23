@@ -25,10 +25,13 @@
 @import "base/typography";
 
 // Components
+@import "components/header";
 @import "components/credits";
 @import "components/navbar";
 @import "components/panel";
 @import "components/introduction";
+@import "components/explore";
+@import "components/svg-icon-button";
 
 // Overrides
 @import "overrides/bootstrap";

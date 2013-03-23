@@ -33,9 +33,7 @@
         {id: '1', text: 'Married without children'},
         {id: '2', text: 'Married with two children'},
         {id: '3', text: 'Single, fuck yeah!'}
-      ],
-      select2:
-        width: 300
+      ]
     )
     $('#income-group').editable(
       type: "select2",
@@ -44,9 +42,7 @@
         {id: '1', text: '10000 – 20000'},
         {id: '2', text: '20000 – 40000'},
         {id: '3', text: '40000 – 80000'}
-      ],
-      select2:
-        width: 300
+      ]
     )
     $('#municipality').editable(
       type: "select2",
@@ -55,9 +51,7 @@
         {id: '1', text: 'Egliswil'},
         {id: '2', text: 'Lenzburg'},
         {id: '3', text: 'Aarau'}
-      ],
-      select2:
-        width: 300
+      ]
     )
   setUpEditable()
 

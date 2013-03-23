@@ -29,10 +29,15 @@
   <body class="<%= page_classes %>">
     <div id="app-container">
       <div id="app-content">
+        <%= partial "partials/header" %>
         <%= yield %>
       </div>
       <div id="app-footer-push"></div>
     </div>
+    <div id="app-footer">
+      <%= partial "partials/explore" %>
+    </div>
+    <%= partial "partials/imprint" %>
     <!-- ——————————————————————————————————————————————————————————————————— JS -->
     <!-- Base scripts -->
     <%= javascript_include_tag "base" %>

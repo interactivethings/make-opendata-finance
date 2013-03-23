@@ -1,0 +1,6 @@
+.svg-icon-button{
+  @include opacity(0.5);
+}
+.svg-icon-button:hover{
+  @include opacity(1);
+}

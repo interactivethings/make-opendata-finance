@@ -1,8 +1,6 @@
 // Make space for navbar
 #app-content {
-  padding-top: 40px;
-
 }
 
 // Make Footer Sticky
-@include sticky-footer(50px, "#app-container", "#app-footer-pusher", "#app-footer");
+@include sticky-footer(100px, "#app-container", "#app-footer-pusher", "#app-footer");

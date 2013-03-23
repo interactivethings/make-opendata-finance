@@ -1,7 +1,39 @@
 .introduction{
-  padding: 50px 0;
-  border-bottom: 1px solid #eee;
+  padding: 50px 0 0;
+  @include box-shadow ();
+  .container{
+    position: relative;
+  }
 }
-.select2-choice{
-  font-size: $font-size-l;
+.lead.question-paragraph{
+
+}
+.lead.answer-paragraph{
+  margin-bottom: 0;
+}
+.calendar{
+  display: block;
+  text-align:center;
+  width: 200px;
+  height: 200px;
+  background: image-url("noun_project_4297.svg") 0 0 no-repeat;
+  margin: 0.5em auto 0;
+  @include background-size("cover");
+  span{ display: block;}
+  .calendar-month{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 50px;
+    text-transform: uppercase;
+  }
+  .calendar-day{
+    font-size: 100px;
+    font-weight:900;
+    line-height: 110px;
+  }
+}
+.question-toggle{
+  position: absolute;
+  right: 0;
+  top: 100px;
 }

@@ -40,8 +40,9 @@ $space-h:             60px;
 
 /* DEFAULTS
 /////////////////////////////////////////////////////////////////*/
+$default-transition-duration: 300ms;
 $default-border-radius:       3px;
 $default-box-shadow-h-offset: 0px;
 $default-box-shadow-v-offset: 1px;
 $default-box-shadow-blur:     5px;
-$default-box-shadow-color:    rgba(0,0,0,0.4);
+$default-box-shadow-color:    rgba(0,0,0,0.2);
