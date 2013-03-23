@@ -1,76 +1,8 @@
+#= require ./map
+
 (function() {
-  /* MAP
-  /////////////////////////////////////////////////////////////////*/
-  var width = 960,
-  height = 500;
-
-  var projection = d3.geo.albers()
-    .rotate([0, 0])
-    .center([8.43, 46.8])
-    .scale(13600);
-
-  var path = d3.geo.path()
-    .projection(projection);
-
-  var svg = d3.select("#map").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  queue()
-    .defer(d3.csv, 'assets/data/fichier.csv')
-    .defer(d3.json, 'assets/geodata/topojson/swiss-municipalities-simplified.json')
-    .await(ready);
-
-  function ready (error, fichier, municipalities) {
-
-    var indexByBfsNo = {},
-      min = 365,
-      max = 0,
-      diff = 0;
-
-    fichier.forEach(function(d) {
-      if (d['gross_income'] == '60000' && d['social_group'] == '1') {
-        var days = d['timespan'];
-        indexByBfsNo[d['bfs_number']] = d;
-        if (days > max) {
-          max = days;
-        }
-        if (days < min) {
-          min = days;
-        }
-      }
-    });
-    diff = max - min;
-
-    svg.selectAll('path')
-      .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
-      .enter().append('path')
-      .attr('class', 'municipality')
-      .attr('data-bfsno', function (d) {
-        return d.properties.bfsNo;
-      })
-      .style('fill', function (d) {
-        var bfsNo = d.properties.bfsNo,
-          alpha;
-        if (bfsNo in indexByBfsNo) {
-          alpha = (indexByBfsNo[bfsNo]['timespan'] - min) / diff;
-          return 'rgba(49,163,84,' + (1 - alpha) + ')';
-        }
-        return 'rgb(214,234,247)';
-      })
-      .attr('d', path)
-      .append('title').text(function (d) {
-        var bfsNo = d.properties.bfsNo,
-          title = d.properties.name,
-          taxFreedomDay;
-        if (bfsNo in indexByBfsNo) {
-          taxFreedomDay = indexByBfsNo[bfsNo]['tax_freedom_day'];
-          2012-01-01
-          title += ', ' + taxFreedomDay.substring(8, 10) + '.' + taxFreedomDay.substring(5, 7) + '.' + taxFreedomDay.substring(0, 4);
-        }
-        return title;
-      });
-  }
+  
+  app.map().load();
 
   /* LOCATION BY TEXT
   /////////////////////////////////////////////////////////////////*/
@@ -110,4 +42,4 @@
     }, function() {});
   });
 
-})()
+})();
