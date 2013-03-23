@@ -9,6 +9,7 @@ app.timeline = ->
 
   timeline = (selection) ->
     selection.each (data) ->
+      console.log this
       # Append an SVG, but only once
       vis = d3.select(this).selectAll("svg").data([0]).enter().append("svg")
         .attr
