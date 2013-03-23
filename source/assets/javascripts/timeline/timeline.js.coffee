@@ -1,23 +1,25 @@
+#= require ./timelineFocus
+#= require ./timelineContext
+
 # Some helpers
 parseDate = d3.time.format("%Y-%m-%d").parse
 t = (x, y) -> "translate(#{x},#{y})"
 
-
 app.timeline = ->
   width = 960
-  height = 200
+  height = 300
+  focus = app.timelineFocus()
+    .width(width)
+    .height(200)
+  context = app.timelineContext()
+    .width(width)
+    .height(90)
+    .on("brush", -> console.log "brush", arguments)
 
   timeline = (selection) ->
     selection.each (data) ->
-      console.log this
-      # Append an SVG, but only once
-      vis = d3.select(this).selectAll("svg").data([0]).enter().append("svg")
-        .attr
-          width: width
-          height: height
-
-      data.forEach (d) ->
-        d.timespan = +d.timespan
+      # Mangle data, construct scales
+      data.forEach (d) -> d.timespan = +d.timespan
 
       days = d3.nest()
         .key((d) -> d.tax_freedom_day)
@@ -28,26 +30,36 @@ app.timeline = ->
       # end = d3.time.year.offset(start, 1)
       # timeExtent = [start, end]
 
-      x = d3.time.scale()
-        .domain(timeExtent)
-        .range([10, width - 10])
-
-      console.log "max", maxPerDay = d3.max(days, (d) -> d.values.length)
-      console.log "median", d3.median(days, (d) -> d.values.length)
-      console.log "mean", d3.mean(days, (d) -> d.values.length)
-      r = d3.scale.sqrt()
-        .domain([0, maxPerDay])
-        .range([1, 10])
-
-      markers = vis.selectAll("circle")
-        .data(days, (d) -> d.key)
-
-      markers.enter().append("circle")
+      # Append an SVG, but only once
+      vis = d3.select(this).selectAll("svg").data([0])
+      visEnter = vis.enter().append("svg")
         .attr
-          transform: (d) -> t(x(parseDate(d.key)), height/2)
-          r: (d) -> r(d.values.length)
+          width: width
+          height: height
+      # visEnter.append("defs")
+      # .append("clipPath")
+      #   .attr("id", "clip")
+      # .append("rect")
+      #   .attr("width", width)
+      #   .attr("height", 50)
 
-      markers.exit().remove()
+      visEnter.append("g")
+        .attr
+          class: "timeline-focus"
+
+      visEnter.append("g")
+        .attr
+          class: "timeline-context"
+          transform: t(0, 200)
+
+      vis.select(".timeline-focus")
+        .datum(days)
+        .call(focus)
+
+      context.domain(timeExtent)
+      vis.select(".timeline-context")
+        .datum(days)
+        .call(context)
 
     timeline
 
