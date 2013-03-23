@@ -12,17 +12,23 @@ app.timelineContext = ->
     .x(x)
     .on("brushstart", dispatch.brushstart)
     .on("brushend", dispatch.brushend)
-    .on("brush", -> if brush.empty() then dispatch.brush(x.domain()) else dispatch.brush(brush.extent()))
+    .on "brush", -> 
+      if brush.empty()
+        dispatch.brush(x.domain())
+      else 
+        extent = brush.extent()
+        start = d3.time.hour.offset(d3.time.day.floor(extent[0]), -12)
+        end = d3.time.day.offset(start, 2)
+        brush.extent([start, end])
+        dispatch.brush(brush.extent())
 
   context = (g) ->
     g.each (days) ->
         
-      x.domain(domain).range([10, width - 10])
+      x.domain(domain).range([0, width])
       markerWidth = x(d3.time.day.offset(domain[0], 1)) - x.range()[0]
 
       maxPerDay = d3.max(days, (d) -> d.values.length)
-      # console.log "median", d3.median(days, (d) -> d.values.length)
-      # console.log "mean", d3.mean(days, (d) -> d.values.length)
 
       fill = d3.scale.linear()
         .domain([0, maxPerDay])
@@ -42,13 +48,18 @@ app.timelineContext = ->
       markers.exit().remove()
 
       # Brush
-      g.selectAll(".brush").data([0]).enter().append("g")
+      brush.extent([x.domain()[0], d3.time.day.offset(x.domain()[0], 2)])
+      brushes = g.selectAll(".brush").data([0]).enter().append("g")
         .attr
           class: "brush"
         .call(brush)
-      .selectAll("rect")
-        .attr
-          height: height
+      brushes.selectAll(".resize").remove()
+      brushes.selectAll(".background")
+        .style
+          background: "transparent"
+      brushes.selectAll("rect")
+          .attr
+            height: height
 
     context
 

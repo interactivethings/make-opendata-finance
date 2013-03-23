@@ -28,16 +28,17 @@ line, rect{
   }
 }
 .brush .extent {
-  stroke: none;
-  fill-opacity: .1;
+  stroke: #000;
+  stroke-width: 2px;
+  fill: none;
   shape-rendering: crispEdges;
 }
-.brush .background {
-  visibility: visible !important;
-  stroke: none;
-  fill-opacity: .05;
-  shape-rendering: crispEdges;
-}
+// .brush .background {
+//   visibility: visible !important;
+//   stroke: none;
+//   fill-opacity: .05;
+//   shape-rendering: crispEdges;
+// }
 .brush .resize path {
   fill: #f5f5f5;
   stroke: #ccc;

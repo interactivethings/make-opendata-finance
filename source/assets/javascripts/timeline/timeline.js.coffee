@@ -10,11 +10,11 @@ app.timeline = ->
   height = 300
   focus = app.timelineFocus()
     .width(width)
-    .height(200)
+    .height(260)
   context = app.timelineContext()
     .width(width)
-    .height(90)
-    .on("brush", -> console.log "brush", arguments)
+    .height(30)
+    .on("brush", focus.domain)
 
   timeline = (selection) ->
     selection.each (data) ->
@@ -36,12 +36,6 @@ app.timeline = ->
         .attr
           width: width
           height: height
-      # visEnter.append("defs")
-      # .append("clipPath")
-      #   .attr("id", "clip")
-      # .append("rect")
-      #   .attr("width", width)
-      #   .attr("height", 50)
 
       visEnter.append("g")
         .attr
@@ -50,8 +44,9 @@ app.timeline = ->
       visEnter.append("g")
         .attr
           class: "timeline-context"
-          transform: t(0, 200)
+          transform: t(0, height - context.height())
 
+      focus.domain(timeExtent)
       vis.select(".timeline-focus")
         .datum(days)
         .call(focus)
