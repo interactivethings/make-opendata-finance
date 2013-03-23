@@ -18,18 +18,26 @@
 
   setUpEditable = ->
     $.fn.editable.defaults.mode = "inline"
+    $.fn.editable.defaults.showbuttons = false
+    $.fn.editable.defaults.url = (params) ->
+      d = new $.Deferred
+      if params.value is "abc"
+        d.reject "error message"
+      else
+        console.log(params)
+
     $('#social-group').editable(
-      showbuttons: false,
       type: "select2",
       value: 2,
       source: [
         {id: '1', text: 'Married without children'},
         {id: '2', text: 'Married with two children'},
         {id: '3', text: 'Single, fuck yeah!'}
-      ]
+      ],
+      select2:
+        width: 300
     )
     $('#income-group').editable(
-      showbuttons: false,
       type: "select2",
       value: 1,
       source: [
@@ -39,7 +47,6 @@
       ]
     )
     $('#municipality').editable(
-      showbuttons: false,
       type: "select2",
       value: 1,
       source: [
