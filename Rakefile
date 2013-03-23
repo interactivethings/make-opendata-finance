@@ -182,70 +182,83 @@ task :fetch_municipalities do
     # open up the index of all municipalities
     @a.get('http://de.wikipedia.org/wiki/Gemeinden_der_Schweiz-A') do |page|
 
-      # foreach municipality listed
-      municipalities_list = page.parser
-      municipalities_list.css('#mw-content-text>ul>li>a').each { |municipality|
-        line = []
-        french_link = ""
-        italian_link = ""
-        english_link = ""
+      def process_list(page_link, csv)
+        @b.get("http://de.wikipedia.org#{page_link}") { |current_list|
 
-        # german
-        @a.get(municipality.attr('href')) { |municipality_page|
-          municipality_doc = municipality_page.parser
-          name = municipality_doc.css('#firstHeading>span').first.text
-          puts name
+          municipalities_list = current_list.parser
+          municipalities_list.css('#mw-content-text>ul>li>a').each { |municipality|
+            line = []
+            french_link = ""
+            italian_link = ""
+            english_link = ""
 
-          # bfs_number
-          if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').length >= 1
-            municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)>span').first.remove
-            bfs_number = municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)').first.text
-            puts bfs_number
-            line[0] = bfs_number
-          end
+            # german
+            @b.get(municipality.attr('href')) { |municipality_page|
+              municipality_doc = municipality_page.parser
+              name = municipality_doc.css('#firstHeading>span').first.text
+              puts name
 
-          # # inhabitants
-          # if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td:contains("Einwohner:"').length >= 1
-          #   puts municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td:contains("Einwohner:"').first.parent.name
-          # end
+              # bfs_number
+              if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').length >= 1
+                municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)>span').first.remove
+                bfs_number = municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)').first.text
+                puts bfs_number
+                line[0] = bfs_number
+              end
 
-          if municipality_doc.css('#mw-content-text>table>tr>td>div.center>div.floatnone>a.image>img').length >= 1
-            line [5] = "http:#{municipality_doc.css('#mw-content-text>table>tr>td>div.center>div.floatnone>a.image>img').first.attr('src')}"
-          end
-          line[1] = name
+              # # inhabitants
+              # if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td:contains("Einwohner:"').length >= 1
+              #   puts municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td:contains("Einwohner:"').first.parent.name
+              # end
 
-          french_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-fr>a').first.attr('href')}"
-          italian_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-it>a').first.attr('href')}"
-          english_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-en>a').first.attr('href')}"
+              if municipality_doc.css('#mw-content-text>table>tr>td>div.center>div.floatnone>a.image>img').length >= 1
+                line [5] = "http:#{municipality_doc.css('#mw-content-text>table>tr>td>div.center>div.floatnone>a.image>img').first.attr('src')}"
+              end
+              line[1] = name
+
+              french_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-fr>a').first.attr('href')}"
+              italian_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-it>a').first.attr('href')}"
+              english_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-en>a').first.attr('href')}"
+            }
+
+            # french
+            @c.get(french_link) { |municipality_page|
+              municipality_doc = municipality_page.parser
+              name = municipality_doc.css('#firstHeading>span').first.text
+              line[2] = name
+              puts name
+            }
+
+            # italian
+            @d.get(italian_link) { |municipality_page|
+              municipality_doc = municipality_page.parser
+              name = municipality_doc.css('#firstHeading>span').first.text
+              line[3] = name
+              puts name
+            }
+
+            # english
+            @e.get(english_link) { |municipality_page|
+              municipality_doc = municipality_page.parser
+              name = municipality_doc.css('#firstHeading>span').first.text
+              line[4] = name
+              puts name
+            }
+
+            csv << line
+          }
         }
+      end
 
-        # french
-        @b.get(french_link) { |municipality_page|
-          municipality_doc = municipality_page.parser
-          name = municipality_doc.css('#firstHeading>span').first.text
-          line[2] = name
-          puts name
-        }
+      process_list("/wiki/Gemeinden_der_Schweiz-A", csv)
 
-        # italian
-        @c.get(italian_link) { |municipality_page|
-          municipality_doc = municipality_page.parser
-          name = municipality_doc.css('#firstHeading>span').first.text
-          line[3] = name
-          puts name
-        }
-
-        # english
-        @d.get(english_link) { |municipality_page|
-          municipality_doc = municipality_page.parser
-          name = municipality_doc.css('#firstHeading>span').first.text
-          line[4] = name
-          puts name
-        }
-
-        csv << line
+      # go ahead to another list of municipalities
+      alphabet_list = page.parser
+      alphabet_list.css('#mw-content-text>p>a').each { |new_municipalities_list|
+        if new_municipalities_list.attr('title') != "Politische Gemeinde"
+          process_list(new_municipalities_list.attr('href'), csv)
+        end
       }
-
     end
   end
 
