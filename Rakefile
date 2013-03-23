@@ -9,6 +9,7 @@ require "./lib/sync_services"
 BUILD_DIR = './build'
 PACKED_BUILD_DIR = './packed_builds'
 DATA_DIR = './data'
+DATA_ASSETS_DIR = './source/assets/data'
 DEPLOY_SRC = BUILD_DIR                        # only deploy build dir
 # DEPLOY_SRC = [BUILD_DIR, PACKED_BUILD_DIR]  # also deploy packed builds
 REMOTES = YAML.load_file("remotes.yml")
@@ -111,7 +112,7 @@ task :process_raw do
   require "csv"
 
   column_names = ["canton", "bfs_number", "municipality", "tax_freedom_day", "timespan", "gross_income", "social_group"]
-  CSV.open("#{DATA_DIR}/clean/data.csv", "w:UTF-8") do |csv|
+  CSV.open("#{DATA_ASSETS_DIR}/fichier.csv", "w:UTF-8") do |csv|
     csv << column_names
 
     # navigate into the data directory

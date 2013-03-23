@@ -17,23 +17,48 @@
     .attr("height", height);
 
   queue()
-    .defer(d3.csv, 'assets/data/fichier1.csv')
+    .defer(d3.csv, 'assets/data/fichier.csv')
     .defer(d3.json, 'assets/geodata/topojson/swiss-municipalities-simplified.json')
     .await(ready);
 
   function ready (error, fichier, municipalities) {
-    var daysByBfsNo = {};
-    fichier.forEach(function(d) { 
-      daysByBfsNo[d['BFS/OFS-No']] = d['Dauer (Tage)/Durée (jours)'];
+
+    var daysByBfsNo = {},
+      min = 365,
+      max = 0,
+      diff = 0;
+
+    fichier.forEach(function(d) {
+      if (d['gross_income'] == '60000' && d['social_group'] == '1') {
+        var days = d['timespan'];
+        daysByBfsNo[d['bfs_number']] = days;
+        if (days > max) {
+          max = days;
+        }
+        if (days < min) {
+          min = days;
+        }
+      }
     });
+    diff = max - min;
+
     svg.selectAll('path')
-    .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
-    .enter().append('path')
-    .attr('class', 'municipality')
-    .style('fill', function(d) {
-      return 'rgba(49,163,84,' + (daysByBfsNo[d.properties.bfsNo] / 60) + ')';
-    })
-    .attr('d', path);
+      .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
+      .enter().append('path')
+      .attr('class', 'municipality')
+      .attr('data-bfsno', function (d) {
+        return d.properties.bfsNo;
+      })
+      .style('fill', function (d) {
+        var bfsNo = d.properties.bfsNo,
+          alpha;
+        if (bfsNo in daysByBfsNo) {
+          alpha = (daysByBfsNo[bfsNo] - min) / diff;
+          return 'rgba(49,163,84,' + (1 - alpha) + ')';
+        }
+        return 'rgb(214,234,247)';
+      })
+      .attr('d', path);
   }
 
   /* LOCATION BY TEXT
