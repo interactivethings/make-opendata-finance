@@ -45,8 +45,9 @@
     svg.selectAll('path')
       .data(topojson.object(municipalities, municipalities.objects['swiss-municipalities']).geometries)
       .enter().append('path')
-      .attr('class', function (d) {
-        return 'municipality municipality-' + d.properties.bfsNo;
+      .attr('class', 'municipality')
+      .attr('data-bfsno', function (d) {
+        return d.properties.bfsNo;
       })
       .style('fill', function (d) {
         var bfsNo = d.properties.bfsNo,
