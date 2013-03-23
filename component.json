@@ -13,7 +13,7 @@
     "handlebars": "~1.0.0",
     "swiss-maps": "git://github.com/interactivethings/swiss-maps.git",
     "jquery-ui": "~1.10.2",
-    "x-editable": "git://github.com/vitalets/x-editable.git",
-    "select2": "git://github.com/ivaynberg/select2.git"
+    "select2": "git://github.com/ivaynberg/select2.git",
+    "bootstrap-editable": "http://vitalets.github.com/x-editable/assets/zip/bootstrap-editable-1.4.3.zip"
   }
 }

@@ -3,6 +3,7 @@
 body{ 
   color: $text-color;
   font-family: $default-font-family;
+  font-weight: 500;
   font-size: $default-font-size;
   line-height: $default-line-height;
 }
@@ -15,4 +16,13 @@ a{
 }
 a:hover{
   color: $link-color-hover;
+}
+h1{ 
+  font-weight: 300;
+}
+h2{
+  font-weight: 400;
+}
+h3{ 
+  font-weight: 400;
 }
