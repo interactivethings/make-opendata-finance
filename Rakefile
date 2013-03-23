@@ -188,9 +188,6 @@ task :fetch_municipalities do
           municipalities_list = current_list.parser
           municipalities_list.css('#mw-content-text>ul>li>a').each { |municipality|
             line = []
-            french_link = ""
-            italian_link = ""
-            english_link = ""
 
             # german
             @b.get(municipality.attr('href')) { |municipality_page|
@@ -216,33 +213,34 @@ task :fetch_municipalities do
               end
               line[1] = name
 
-              french_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-fr>a').first.attr('href')}"
-              italian_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-it>a').first.attr('href')}"
-              english_link = "http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-en>a').first.attr('href')}"
-            }
+              # french
+              if municipality_doc.css('#p-lang div.body>ul>li.interwiki-fr>a').length >= 1
+                @c.get("http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-fr>a').first.attr('href')}") { |municipality_page|
+                  municipality_doc = municipality_page.parser
+                  name = municipality_doc.css('#firstHeading>span').first.text
+                  line[2] = name
+                  puts name
+                }
+              end
 
-            # french
-            @c.get(french_link) { |municipality_page|
-              municipality_doc = municipality_page.parser
-              name = municipality_doc.css('#firstHeading>span').first.text
-              line[2] = name
-              puts name
-            }
+              # italian
+              if municipality_doc.css('#p-lang div.body>ul>li.interwiki-it>a').length >= 1
+                @d.get("http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-it>a').first.attr('href')}") { |municipality_page|
+                  municipality_doc = municipality_page.parser
+                  name = municipality_doc.css('#firstHeading>span').first.text
+                  line[3] = name
+                  puts name
+                }
+              end
 
-            # italian
-            @d.get(italian_link) { |municipality_page|
-              municipality_doc = municipality_page.parser
-              name = municipality_doc.css('#firstHeading>span').first.text
-              line[3] = name
-              puts name
-            }
-
-            # english
-            @e.get(english_link) { |municipality_page|
-              municipality_doc = municipality_page.parser
-              name = municipality_doc.css('#firstHeading>span').first.text
-              line[4] = name
-              puts name
+              if municipality_doc.css('#p-lang div.body>ul>li.interwiki-en>a').length >= 1
+                @e.get("http:#{municipality_doc.css('#p-lang div.body>ul>li.interwiki-en>a').first.attr('href')}") { |municipality_page|
+                  municipality_doc = municipality_page.parser
+                  name = municipality_doc.css('#firstHeading>span').first.text
+                  line[4] = name
+                  puts name
+                }
+              end
             }
 
             csv << line
