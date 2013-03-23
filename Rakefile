@@ -112,7 +112,7 @@ task :process_raw do
   require "csv"
 
   column_names = ["canton", "bfs_number", "municipality", "tax_freedom_day", "timespan", "gross_income", "social_group"]
-  CSV.open("#{DATA_ASSETS_DIR}/fichier1.csv", "w:UTF-8") do |csv|
+  CSV.open("#{DATA_ASSETS_DIR}/fichier.csv", "w:UTF-8") do |csv|
     csv << column_names
 
     # navigate into the data directory

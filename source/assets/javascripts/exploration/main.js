@@ -17,7 +17,7 @@
     .attr("height", height);
 
   queue()
-    .defer(d3.csv, 'assets/data/fichier1.csv')
+    .defer(d3.csv, 'assets/data/fichier.csv')
     .defer(d3.json, 'assets/geodata/topojson/swiss-municipalities-simplified.json')
     .await(ready);
 
