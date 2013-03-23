@@ -8,12 +8,13 @@
     <meta name="description" content="Personal Financial Information Visualization Prototypes">
     <meta name="author" content="Benjamin Wiederkehr">
     <!-- ——————————————————————————————————————————————————————————————————— TITLE -->
-    <title>IXT App</title>
+    <title>Introduction</title>
     <!-- ——————————————————————————————————————————————————————————————————— CSS -->
     <!-- Base stylesheets -->
-    <link href="assets/stylesheets/base.css?1363960945" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/stylesheets/base.css?1364051343" media="all" rel="stylesheet" type="text/css" />
     <!-- Page specific stylesheets -->
     
+    <link href="assets/stylesheets/jquery-ui/themes/custom-theme/jquery-ui-1.8.18.custom.css" media="all" rel="stylesheet" type="text/css" />
     <!-- ——————————————————————————————————————————————————————————————————— SHIM -->
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!-- ——————————————————————————————————————————————————————————————————— FAVICON -->
@@ -36,10 +37,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/">Make.OpenData.ch Finance</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class=''><a href='app-1.html'>App 1</a></li><li class=''><a href='map-1.html'>Map 1</a></li><li class=''><a href='map-prototype.html'>Map Prototype</a></li>
+          <li class=''><a href='final.html'>Tax Freedom Day</a></li><li class=''><a href='map.html'>Map</a></li><li class=''><a href='timeline.html'>Timeline</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -47,8 +47,21 @@
 </div>
       </div>
       <div id="app-content">
-        <div class="container">
-  <h1>Hello, World</h1>
+        <section class="introduction">
+  <div class="container">
+    <p class="lead" id="editable">
+      Daniel Vasella is 
+      <a href="#" id="social-group" data-pk="1" data-original-title="social-group" class="editable editable-click"></a>
+      , lives in 
+      <a href="#" id="municipality" data-pk="1" data-original-title="municipality" class="editable editable-click"></a> 
+      and earned 
+      <a href="#" id="income-group" data-pk="1" data-original-title="income-group" class="editable editable-click"></a> 
+      CHF in the last year. Therefore his tax freedom day is XXX.
+    </p>
+  </div>
+</section>
+<div class="container">
+  <div class="timeline"></div>
 </div>
       </div>
       <div id="app-footer-push"></div>
@@ -60,7 +73,7 @@
       <div class="span12">
         <p>Created at <a href="http://make.opendata.ch/">
           <img src="assets/images/opendata-MAKE-generic-logo-RGB.svg" width="92" height="30"/>
-        </a> by Fabian, Heiko, Philipp, Timo & <a href="http://interactivethings.com">Interactive Things</a></a></p>
+        </a> by Fabian, Heiko, Philipp, Timo, Sylke, Mhedi & <a href="http://interactivethings.com">Interactive Things</a></a></p>
       </div>
     </div>
   </div>
@@ -68,14 +81,14 @@
     </div>
     <!-- ——————————————————————————————————————————————————————————————————— JS -->
     <!-- Base scripts -->
-    <script src="assets/javascripts/base.js?1363962547" type="text/javascript"></script>
-    <script src="assets/javascripts/main.js?1363960945" type="text/javascript"></script>
+    <script src="assets/javascripts/base.js?1364051342" type="text/javascript"></script>
+    <script src="assets/javascripts/main.js?1364051331" type="text/javascript"></script>
     
     <!-- Page specific scripts -->
     
     <!-- Analytics -->
     <script type="text/javascript">
-    if (window.App.config.googleAnalyticsAccount) {
+    if (window.app.config.googleAnalyticsAccount) {
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', window.App.config.googleAnalyticsAccount]);
       _gaq.push(['_trackPageview']);
