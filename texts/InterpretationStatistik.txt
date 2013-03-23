@@ -1,0 +1,27 @@
+Interpretation der statistischen Auswertung
+==============================================================
+
+Wenn man die Tax Freedom Days (TFD) der einzelnen Kantone für je einen Zivilstand und je eine
+Einkommensklasse vergleicht, fällt einiges auf. 
+
+Plot 1 zeigt zum Beispiel die TFDs für verheiratete Personen mit Kindern und einem
+Einkommen von 70'000 CHF in den 26 Kantonen. Es fällt erstens auf, dass die Unterschiede zwischen den Kantonen recht hoch sind, so muss eine 
+solche Person im Kanton Neuenburg im Schnitt ungefähr 25 Tage arbeiten, um ihre Steuern abzubezahlen,
+während eine Person wohnhaft im Kanton Tessin nur 5 Tage braucht. Es zeigt sich zudem, dass die innerkantonalen
+Unterschiede zum Teil recht hoch sind, so deckt zum Beispiel der Kanton Wallis in dieser Kombination von Zivilstand 
+und Einkommen eine Bandbreite von mehreren Tagen ab. Je nach Wohnort im Kanton tritt der TFD somit zum Teil um einiges früher
+oder später auf. 
+
+Eine statistische Analyse hat zudem ergeben, dass, wenn man nur verheiratete Personen mit Kindern und einem Einkommen von
+45'000 betrachtet, die Unterschiede zwischen den Kantonen am signifikantesten sind (Plot 2). Dies bedeuted konkret, dass 
+in dieser Kombination von Zivilstand und Einkommensklasse die Unterschiede innerhalb (emphasis) der Kantone minimal sind, während sich die Kantone
+wiederum gegenseitig signifikant unterscheiden. Anders formuliert könnte man auch sagen, dass in dieser Konfiguration
+die innerkantonale Steuergleichheit im Schnitt über alle Kantone gewährleistet ist.
+
+In einer weiteren Analyse wurde geschaut, innerhalb welchen Kantones die grössten Ungleichheiten zwischen den Gemeinden
+zu finden sind. Dafür wurde die Gemeinde mit dem frühesten TFD (kleinste Steuerbelastung) mit der Gemeinde mit dem spätesten TFD  (grösste
+Steuerbelastung) verglichen. Es hat sich ergeben, dass der grösste Unterschied, nämlich 37 Tage, innerhalb des Kantons Graubünden
+zu finden ist, und nämlich für eine ledige Person mit einem Einkommen von 1'000'000 Franken (Plot 3). Je nachdem, wo sich diese Person im
+Kanton Graubünden niederlässt, bezahlt sie somit markant mehr oder weniger Steuern. Es sei hier noch erwähnt, dass die Unterschiede
+für diese Kombination von Zivilstand und Einkommen auch in anderen Kantonen ziemlich markant ausfallen, so zum Beispiel in den Kantonen
+Freiburg, Bern und Luzern.
