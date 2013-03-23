@@ -1,12 +1,11 @@
 #explore{
-  
   p{
     padding: 0;
     margin: 0;
     font-size: $font-size-l;
     font-weight: 400;
     text-align: center;
-    line-height: 100px;
+    line-height: 80px;
     a{
       @include text-shadow (0 1px 0 rgba(255, 255, 255, 0.6));
       @include box-shadow (inset $default-box-shadow-h-offset $default-box-shadow-v-offset $default-box-shadow-blur $default-box-shadow-color);

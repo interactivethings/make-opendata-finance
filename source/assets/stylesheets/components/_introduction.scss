@@ -11,29 +11,33 @@
 .lead.answer-paragraph{
   margin-bottom: 0;
 }
+.answer-introduction{
+  font-size: $font-size-m;
+  font-weight: 400;
+}
 .calendar{
   display: block;
   text-align:center;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   background: image-url("noun_project_4297.svg") 0 0 no-repeat;
   margin: 0.5em auto 0;
   @include background-size("cover");
   span{ display: block;}
   .calendar-month{
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 50px;
+    font-size: $font-size-l;
+    font-weight: 400;
+    line-height: 40px;
     text-transform: uppercase;
   }
   .calendar-day{
-    font-size: 100px;
-    font-weight:900;
-    line-height: 110px;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 90px;
   }
 }
 .question-toggle{
   position: absolute;
   right: 0;
-  top: 100px;
+  bottom: 20px;
 }

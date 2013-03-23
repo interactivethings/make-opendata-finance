@@ -22,8 +22,15 @@
 /* line 656, ../../../components/bootstrap/docs/assets/css/bootstrap.css */
 .lead {
   margin-bottom: 1em;
-  font-size: $font-size-h;
-  font-weight: 200;
+  font-size: $font-size-l;
+  font-weight: 400;
   line-height: 1.5; 
   text-align: center;
+}
+/* line 5251, ../../../components/bootstrap/docs/assets/css/bootstrap.css */
+.modal-footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  @include box-shadow(none);
 }

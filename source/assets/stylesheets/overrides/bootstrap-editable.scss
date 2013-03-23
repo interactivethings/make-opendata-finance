@@ -1,0 +1,12 @@
+.editable-click, 
+a.editable-click, 
+a.editable-click:hover {
+    border-bottom: solid 1px $link-color;
+}
+
+.editable-click.editable-disabled, 
+a.editable-click.editable-disabled, 
+a.editable-click.editable-disabled:hover {
+   color: $link-color-hover;
+   border-bottom: none;
+}
