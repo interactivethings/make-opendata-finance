@@ -84,15 +84,9 @@ app.map = function () {
       });
     renderIncomeValue($('#income_slider').slider('value'));
 
-    demographics = d3.nest()
-      .key(function(d) {
-        return d.social_group;
-      })
-      .map(fichier)
-      .keys();
-      
-    demographics.forEach(function (k, v) {
-      $('#demographics_slider').append('<input type="radio" /> <label>Foo</label>');
+    $('input[name="demographics"]').on('change', function () {
+      socialGroup = $(this).val();
+      map.render();
     });
   };
 
