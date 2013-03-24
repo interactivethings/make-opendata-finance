@@ -197,10 +197,14 @@ task :fetch_municipalities do
 
               # bfs_number
               if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').length >= 1
-                municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)>span').first.remove
-                bfs_number = municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)').first.text
-                puts bfs_number
-                line[0] = bfs_number
+                if municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)>span').length >= 1
+                  municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)>span').first.remove
+                  bfs_number = municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)').first.text
+                  puts bfs_number
+                  line[0] = bfs_number
+                else
+                  line[0] = municipality_doc.css('#mw-content-text>table.float-right.toptextcells>tr>td>a[title="Gemeindenummer"]').first.parent.parent.css('td:nth-child(2)').first.text
+                end
               end
 
               # # inhabitants
